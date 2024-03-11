@@ -18,6 +18,7 @@ export class SignupComponent {
     password_confirmation: new FormControl('', Validators.required)
   })
 
+
   isError: boolean = false;
 
 
@@ -29,5 +30,9 @@ export class SignupComponent {
     } else {
       this.isError = true;
     }
+  }
+
+  validatePassword(){
+
   }
 }
