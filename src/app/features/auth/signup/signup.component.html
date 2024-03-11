@@ -6,18 +6,26 @@
     <img src="https://www.cssscript.com/demo/login-page-template/img/bg.svg" alt="phone">
   </section>
   <div class="form-container">
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <form [formGroup]="signupForm" (ngSubmit)="signup()">
       <img src="https://www.cssscript.com/demo/login-page-template/img/avatar.svg" alt="face" class="avatar">
-      <h2>Welcome Back</h2>
+      <h2>Sign Up</h2>
 
       <div class="form-group">
         <i class="fa-solid fa-user"></i>
         <input type="text" formControlName="email" placeholder="Email">
       </div>
+      <div class="form-group">
+        <i class="fa-solid fa-location-dot"></i>
+        <input type="text" formControlName="zipcode" placeholder="Zipcode">
+      </div>
 
       <div class="form-group">
         <i class="fa-solid fa-lock"></i>
         <input type="password" formControlName="password" placeholder="Password">
+      </div>
+      <div class="form-group">
+        <i class="fa-solid fa-lock"></i>
+        <input type="password" formControlName="password_confirmation" placeholder="Password Confirmation">
       </div>
 
 
@@ -25,8 +33,8 @@
         <p class="error-message">Incorrect email or password</p>
       }
 
-      <button type="submit" [disabled]="!loginForm.valid">Login</button>
-      <a [routerLink]="['/signup']" class="signup">Signup</a>
+      <button type="submit" [disabled]="!signupForm.valid">Sign Up</button>
+      <a [routerLink]="['/login']" class="login">Login</a>
     </form>
   </div>
 
