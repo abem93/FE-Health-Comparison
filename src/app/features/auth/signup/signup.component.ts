@@ -45,15 +45,16 @@ export class SignupComponent {
   }
 
   showPasswordToggle(signupForm: FormGroup) {
+    const password = (document.getElementById('password') as HTMLInputElement)
+    const confirm_password = (document.getElementById('password_confirmation') as HTMLInputElement)
     if(this.showPassword) {
       this.showPassword = !this.showPassword
-      signupForm.value.password.type = 'text'
-      signupForm.value.password_confirmation.type = 'text'
+      password.type = 'password'
+      confirm_password.type = 'password'
     }else{
       this.showPassword = !this.showPassword
-      signupForm.value.password.type = 'password'
-      signupForm.value.password_confirmation.type = 'password'
-    }
+      password.type = 'text'
+      confirm_password.type = 'text'
   }
-
+}
 }
