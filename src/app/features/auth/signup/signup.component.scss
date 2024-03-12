@@ -74,12 +74,12 @@ form input{
 input{
   padding: .75rem;
   border: none;
-  border-radius: 2px;
+  border-radius: 6px;
   color: #222;
   background-color: transparent;
   border-bottom: 1px solid #ccc;
 }
-input[type="text"], input[type="password"]{
+input[type="text"], input[type="password"], input[type="email"] {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: bold;
@@ -89,7 +89,8 @@ input[type="text"], input[type="password"]{
 }
 
 input:focus{
-  border-color: #2adc2a;
+  border-bottom: 2.5px solid #2adc2a;
+  border-radius: 6px;
   outline: none;
 }
 
@@ -134,4 +135,15 @@ button:disabled{
   font-size: 1.1em;
   font-weight: 600;
   font-style: bold;
+}
+form .ng-invalid.ng-touched {
+  border-bottom: 2.5px solid red;
+}
+
+.eye{
+  position: absolute;
+  right: 6.5em;
+  color: #707070;
+  z-index: 10;
+  cursor: pointer;
 }

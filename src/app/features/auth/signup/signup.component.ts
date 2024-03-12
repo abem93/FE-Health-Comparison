@@ -20,19 +20,40 @@ export class SignupComponent {
 
 
   isError: boolean = false;
-
+  passwordMatch: boolean = false;
+  showPassword: boolean = false;
 
   constructor(private router: Router) { }
 
   signup(){
     if(this.signupForm.valid){
-      this.router.navigate(['/']);
+      console.log(this.signupForm)
     } else {
       this.isError = true;
+      console.log(this.signupForm)
     }
   }
 
-  validatePassword(){
-
+  validatePassword(signupForm: FormGroup) {
+    let password = signupForm.value.password
+    let confirm_password = signupForm.value.password_confirmation
+    if(password != confirm_password) {
+      this.passwordMatch = true
+    } else {
+      this.passwordMatch = false
+    }
   }
+
+  showPasswordToggle(signupForm: FormGroup) {
+    if(this.showPassword) {
+      this.showPassword = !this.showPassword
+      signupForm.value.password.type = 'text'
+      signupForm.value.password_confirmation.type = 'text'
+    }else{
+      this.showPassword = !this.showPassword
+      signupForm.value.password.type = 'password'
+      signupForm.value.password_confirmation.type = 'password'
+    }
+  }
+
 }

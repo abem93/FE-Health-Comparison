@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from './user.service';
 import { switchMap } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class AuthenticationService {
     return this.http.post<{token: string}>(`${environment.apiUrl}/login`, { email, password }).pipe(switchMap((res:any) => {
       this.setToken(res.token);
       return this.userService.getBootstrapData()
-    }));
+    }))
   }
 
   signup(data:any){

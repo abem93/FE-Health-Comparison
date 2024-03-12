@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router'
 import { RouterModule } from '@angular/router';
+import { AuthenticationService } from '../../../core/services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -19,13 +20,27 @@ export class LoginComponent {
   isError: boolean = false;
 
 
-  constructor(private router: Router) { }
+  constructor(private authService: AuthenticationService, private router: Router) { }
 
-  login(){
+   login(){
     if(this.loginForm.valid){
-      this.router.navigate(['/']);
+      const email = this.loginForm.value.email;
+      const password =  this.loginForm.value.password;
+
+
+      this.authService.login(email, password).subscribe({
+        next:(res:any) =>{
+          console.log(res)
+          this.authService.setToken(res.token)
+          this.router.navigate(['/']);
+        },
+        error: (error:any) => {
+          console.log('Error logging in', error)
+          this.isError = true
+        }
+      })
     } else {
       this.isError = true;
-    }
-  }
+   }
+   }
 }
