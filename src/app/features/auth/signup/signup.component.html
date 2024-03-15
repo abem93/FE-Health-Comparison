@@ -6,7 +6,7 @@
     <img src="https://www.cssscript.com/demo/login-page-template/img/bg.svg" alt="phone">
   </section>
   <div class="form-container">
-    <form [formGroup]="signupForm" (ngSubmit)="signup()">
+    <form [formGroup]="signupForm" (ngSubmit)="signup()" [ngClass]="{'badForm': isError}">
       <img src="https://www.cssscript.com/demo/login-page-template/img/avatar.svg" alt="face" class="avatar">
       <h2>Sign Up</h2>
 
@@ -21,21 +21,21 @@
 
       <div class="form-group">
         <i class="fa-solid fa-lock"></i>
-        <input (ngModelChange)="validatePassword(signupForm)" type="password" formControlName="password" placeholder="Password" id="password" required>
+        <input (ngModelChange)="validatePassword(signupForm)" type="password" formControlName="password" placeholder="Password" id="password" [ngClass]="{'ng-invalid': passwordMatch}"  required>
       </div>
       <div class="form-group">
         <i class="fa-solid fa-lock"></i>
-        <input (keyup)="validatePassword(signupForm)" type="password" formControlName="password_confirmation" placeholder="Password Confirmation" id="password_confirmation" required>
+        <input (keyup)="validatePassword(signupForm)" type="password" formControlName="password_confirmation" placeholder="Password Confirmation" id="password_confirmation" [ngClass]="{'ng-invalid': passwordMatch}" required>
 
         @if(showPassword){
-          <i class="fa-solid fa-eye eye" (click)="showPasswordToggle(signupForm)"></i>
+          <i class="fa-solid fa-eye eye" (click)="showPasswordToggle()"></i>
         }@else{
-          <i class="fa-solid fa-eye-slash eye" (click)="showPasswordToggle(signupForm)"></i>
+          <i class="fa-solid fa-eye-slash eye" (click)="showPasswordToggle()"></i>
         }
       </div>
 
-      @if(isError){
-        <p class="error-message">Incorrect email or password</p>
+      @for(error of errorMessage; track $index){
+        <p class="error-message">{{error}}</p>
       }
       @if(passwordMatch){
         <p class="error-message">Password does match</p>
@@ -45,7 +45,6 @@
       <a [routerLink]="['/login']" class="login">Login</a>
     </form>
   </div>
-
 </div>
 
 

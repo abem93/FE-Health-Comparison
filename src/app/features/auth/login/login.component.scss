@@ -35,7 +35,7 @@
 
 .avatar{
   width: 6.5rem;
-  margin-left: 35%;
+  align-self: center;
 }
 .form-container h2{
   text-align: center;
@@ -69,6 +69,7 @@ form input{
 .fa-solid{
   margin-right: -1.5em;
   color: #acacac;
+  z-index: 10;
 }
 
 input{
@@ -134,4 +135,46 @@ button:disabled{
   font-size: 1.1em;
   font-weight: 600;
   font-style: bold;
+}
+
+form .ng-invalid.ng-touched {
+  border-bottom: 2.5px solid red;
+}
+
+.eye{
+  position: absolute;
+  right: 6.5em;
+  color: #707070;
+  z-index: 10;
+  cursor: pointer;
+}
+@media only screen and (max-width: 1500px) {
+  .left-image{
+    display: none;
+  }
+  .form-container{
+    margin-left: 10%;
+
+  }
+  form{
+    background-color: rgba(249, 249, 249, 0.9);
+    display: flex;
+    width: 70%;
+    height: 80vh;
+
+  }
+  form img{
+    align-self: center;
+    margin-left: 0;
+  }
+
+  .signup{
+    bottom: auto;
+    top: 3rem;
+    right: 3rem;
+  }
+  .background-diagonal img{
+    height: 100vh;
+    width: 100vw;
+  }
 }

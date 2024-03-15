@@ -3,22 +3,23 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router'
 import { RouterModule } from '@angular/router';
 import { AuthenticationService } from '../../../core/services/authentication.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule],
+  imports: [ReactiveFormsModule, RouterModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
   loginForm: FormGroup = new FormGroup({
-    email: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required)
   })
 
   isError: boolean = false;
-
+  showPassword: boolean = false;
 
   constructor(private authService: AuthenticationService, private router: Router) { }
 
@@ -30,7 +31,6 @@ export class LoginComponent {
 
       this.authService.login(email, password).subscribe({
         next:(res:any) =>{
-          console.log(res)
           this.authService.setToken(res.token)
           this.router.navigate(['/']);
         },
@@ -43,4 +43,16 @@ export class LoginComponent {
       this.isError = true;
    }
    }
+
+   showPasswordToggle() {
+    const password = (document.getElementById('password') as HTMLInputElement)
+
+    if(this.showPassword) {
+      this.showPassword = !this.showPassword
+      password.type = 'password'
+    }else{
+      this.showPassword = !this.showPassword
+      password.type = 'text'
+    }
+  }
 }

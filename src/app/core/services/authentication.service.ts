@@ -14,10 +14,11 @@ export class AuthenticationService {
   constructor(private http: HttpClient, private router: Router, private userService: UserService) { }
 
   login(email: string, password: string) {
-    return this.http.post<{token: string}>(`${environment.apiUrl}/login`, { email, password }).pipe(switchMap((res:any) => {
-      this.setToken(res.token);
-      return this.userService.getBootstrapData()
-    }))
+    return this.http.post<{token: string}>(`${environment.apiUrl}/login`, { email, password })
+    // .pipe(switchMap((res:any) => {
+    //   this.setToken(res.token);
+    //   return this.userService.getBootstrapData()
+    // }))
   }
 
   signup(data:any){

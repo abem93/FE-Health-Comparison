@@ -2,49 +2,56 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router'
+import { AuthenticationService } from '../../../core/services/authentication.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule],
+  imports: [ReactiveFormsModule, RouterModule, CommonModule],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
 export class SignupComponent {
   signupForm: FormGroup = new FormGroup({
-    email: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
     zipcode: new FormControl(''),
     password: new FormControl('', Validators.required),
     password_confirmation: new FormControl('', Validators.required)
   })
 
-
+  errorMessage: string[] = [];
   isError: boolean = false;
   passwordMatch: boolean = false;
   showPassword: boolean = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthenticationService) { }
 
   signup(){
-    if(this.signupForm.valid){
-      console.log(this.signupForm)
-    } else {
-      this.isError = true;
-      console.log(this.signupForm)
-    }
+    const formValue = this.signupForm.value;
+    this.authService.signup(formValue).subscribe({
+      next:(res:any) =>{
+        this.router.navigate(['/login']);
+      },
+      error: (error:any) => {
+        console.log('Error Signing up', error.error)
+        this.isError = true
+        this.errorMessage = error.error
+      }
+    })
   }
 
   validatePassword(signupForm: FormGroup) {
     let password = signupForm.value.password
     let confirm_password = signupForm.value.password_confirmation
-    if(password != confirm_password) {
+    if(confirm_password && password !== confirm_password ) {
       this.passwordMatch = true
     } else {
       this.passwordMatch = false
     }
   }
 
-  showPasswordToggle(signupForm: FormGroup) {
+  showPasswordToggle() {
     const password = (document.getElementById('password') as HTMLInputElement)
     const confirm_password = (document.getElementById('password_confirmation') as HTMLInputElement)
     if(this.showPassword) {
@@ -55,6 +62,6 @@ export class SignupComponent {
       this.showPassword = !this.showPassword
       password.type = 'text'
       confirm_password.type = 'text'
+    }
   }
-}
 }

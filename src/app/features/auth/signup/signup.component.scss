@@ -69,6 +69,7 @@ form input{
 .fa-solid{
   margin-right: -1.5em;
   color: #acacac;
+  z-index: 10;
 }
 
 input{
@@ -117,6 +118,7 @@ button:disabled{
 .error-message{
   color: red;
   text-align: center;
+  margin: 0;
 }
 .login{
   position: absolute;
@@ -136,7 +138,7 @@ button:disabled{
   font-weight: 600;
   font-style: bold;
 }
-form .ng-invalid.ng-touched {
+form .ng-invalid.ng-touched, .badForm .ng-invalid {
   border-bottom: 2.5px solid red;
 }
 
@@ -146,4 +148,35 @@ form .ng-invalid.ng-touched {
   color: #707070;
   z-index: 10;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 1500px) {
+  .left-image{
+    display: none;
+  }
+  .form-container{
+    margin-left: 10%;
+
+  }
+  form{
+    background-color: rgba(249, 249, 249, 0.9);
+    display: flex;
+    width: 70%;
+    height: 80vh;
+
+  }
+  form img{
+    align-self: center;
+    margin-left: 0;
+  }
+  .login{
+    bottom:auto;
+    top: 3rem;
+    right: 3rem;
+  }
+
+  .background-diagonal img{
+    height: 100vh;
+    width: 100vw;
+  }
 }
