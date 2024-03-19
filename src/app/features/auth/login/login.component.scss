@@ -1,16 +1,15 @@
 .background-diagonal img{
   top: 1;
   position: absolute;
-  height: 100vh;
-
+  height: 90vh;
+  margin: -0.5rem;
 }
 .container{
   display: flex;
   flex-direction:row;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  background: #eef1ef;
+  height: 80vh;
   z-index: -5;
 }
 
@@ -106,7 +105,7 @@ button{
 }
 
 button:hover{
-  background-color: #0ebc0e;
+  background-color: rgb(65, 244, 166);
 }
 
 button:disabled{
@@ -118,24 +117,7 @@ button:disabled{
   color: red;
   text-align: center;
 }
-.signup{
-  position: absolute;
-  bottom: 2rem;
-  right: 4.5rem;
-  cursor: pointer;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 1em;
-  text-decoration: none;
-  color: rgb(100, 200, 152);
-}
-.signup:hover{
-  color: #40fa40;
-  font-size: 1.1em;
-  font-weight: 600;
-  font-style: bold;
-}
+
 
 form .ng-invalid.ng-touched {
   border-bottom: 2.5px solid red;
