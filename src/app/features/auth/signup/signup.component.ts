@@ -44,10 +44,15 @@ export class SignupComponent {
   validatePassword(signupForm: FormGroup) {
     let password = signupForm.value.password
     let confirm_password = signupForm.value.password_confirmation
-    if(confirm_password && password !== confirm_password ) {
-      this.passwordMatch = true
-    } else {
-      this.passwordMatch = false
+    const submit = (document.getElementById('submit') as HTMLInputElement)
+    if(confirm_password && password !== confirm_password) {
+      this.passwordMatch = true;
+      submit.disabled = true;
+    }else if(password.length < 1 || confirm_password.length < 1){
+      submit.disabled = true;
+    }else {
+      this.passwordMatch = false;
+      submit.disabled = false;
     }
   }
 
