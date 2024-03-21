@@ -10,13 +10,14 @@ h1{
   font-weight: 400;
   font-style: bold;
   font-size: 2.5em;
-  margin-bottom: 2em;
+  margin: 1em;
 }
 .cards{
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 .hospital-card{
   position: relative;
@@ -29,17 +30,18 @@ h1{
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  margin: 1rem;
 }
 
 .hospital-card a{
   position: absolute;
-  bottom: 1rem;
-  right: 1rem;
+  bottom: 1.5rem;
+  right: 1.5rem;
   text-decoration: none;
   cursor: pointer;
   font-weight: 500;
   font-style: bold;
-  color: #2adc2a;
+  color: rgb(45, 203, 134);
 }
 
 .hospital-card a:hover{
