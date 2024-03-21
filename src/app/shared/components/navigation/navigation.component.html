@@ -1,17 +1,18 @@
 <div class="navbar">
   <div class="logo" routerLink="">
-    <!-- <img src="" alt="Costo logo"> -->
+    <img src="https://i.postimg.cc/bNvqZwCq/costo-2.png" alt="Costo logo">
+    <!-- <img src="https://i.postimg.cc/VLZHDfYs/costo-1.png" alt="Costo logo"> -->
     <h1>COSTO</h1>
   </div>
   <div class="links">
     <ul>
-      <li>Hospitals</li>
-      <li>Procedures</li>
-      <li>Blog</li>
+      <li [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Procedures</li>
+      <li [routerLink]="['/login']" routerLinkActive="active">Hospitals</li>
+      <li [routerLink]="['/signup']" routerLinkActive="active">Blog</li>
     </ul>
   </div>
   <div class="login">
-    <a class="log" [routerLink]="['/login']" routerLinkActive="router-link-active" >Login</a>
-    <a class="signup" [routerLink]="['/signup']" routerLinkActive="router-link-active" >Sign Up</a>
+    <a class="log" [routerLink]="['/login']" routerLinkActive="active">Login</a>
+    <a class="signup" [routerLink]="['/signup']"  routerLinkActive="active">Sign Up</a>
   </div>
 </div>
