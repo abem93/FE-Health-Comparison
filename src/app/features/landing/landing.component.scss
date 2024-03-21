@@ -15,9 +15,9 @@
 }
 .hero p{
   font-family: "Roboto", sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   font-style: italic;
-  font-size: 1em;
+  font-size: 1.3em;
 }
 .semi-circle {
   position: relative;
@@ -101,15 +101,15 @@ h3{
 .cards{
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
 }
 .procedure-card{
   position: relative;
-  width: 12rem;
-  height: auto;
+  width: 20rem;
+  height: 10rem;
   padding: 4rem;
+  margin: 1rem 0.5rem;
   background-color: rgba(242, 242, 242, 0.365);
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
