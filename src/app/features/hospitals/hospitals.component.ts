@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { environment } from '../../../environments/environment.development';
+import { Component, OnInit } from '@angular/core';
+import { HospitalService } from '../../core/services/hospital.service';
+import { Hospital } from '../../shared/model/hospital';
+
 
 @Component({
   selector: 'app-hospitals',
@@ -8,6 +10,19 @@ import { environment } from '../../../environments/environment.development';
   templateUrl: './hospitals.component.html',
   styleUrl: './hospitals.component.scss'
 })
-export class HospitalsComponent {
-   API_KEY = environment.key
+export class HospitalsComponent implements OnInit {
+  hospitals : Hospital[] = []
+  constructor(private hospitalService: HospitalService){}
+
+  ngOnInit(): void {
+    this.loadHospitals()
+  }
+
+  loadHospitals(){
+    this.hospitalService.getHospitals().subscribe({
+      next: (response: any) => {
+        this.hospitals = response
+      }
+    })
+  }
 }
