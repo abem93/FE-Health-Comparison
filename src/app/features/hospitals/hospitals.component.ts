@@ -1,21 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { HospitalService } from '../../core/services/hospital.service';
 import { Hospital } from '../../shared/model/hospital';
+import { HospitalDetailComponent } from '../hospital-detail/hospital-detail.component';
+import { Router } from '@angular/router';
 
 
 @Component({
   selector: 'app-hospitals',
   standalone: true,
-  imports: [],
+  imports: [HospitalDetailComponent],
   templateUrl: './hospitals.component.html',
   styleUrl: './hospitals.component.scss'
 })
-export class HospitalsComponent implements OnInit {
-  hospitals : Hospital[] = []
-  constructor(private hospitalService: HospitalService){}
+export class HospitalsComponent implements OnInit, AfterViewInit {
+  hospitals : Hospital[] = [];
+  showDetails : boolean = false;
+
+
+  constructor(private hospitalService: HospitalService, private router: Router){}
 
   ngOnInit(): void {
     this.loadHospitals()
+  }
+
+  ngAfterViewInit(): void {
+
   }
 
   loadHospitals(){
@@ -24,5 +33,14 @@ export class HospitalsComponent implements OnInit {
         this.hospitals = response
       }
     })
+  }
+
+  showHospitalDetails(hospital: Hospital) {
+    this.hospitalService.setSelectedHospital(hospital)
+    this.showDetails = true;
+    this.router.navigate(['/hospitals/details', hospital.id]);
+    setTimeout(() => {
+      document.getElementById('details')?.scrollIntoView({ behavior: 'smooth' });
+    }, 200);
   }
 }

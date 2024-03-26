@@ -1,0 +1,41 @@
+iframe{
+  width: 15rem;
+  height: 20rem;
+  border: 2px solid #2adc2a;
+  outline: 2px solid #2adc2a;
+  border-radius: 24px;
+}
+.hospital-details{
+  margin: 1rem;
+  padding: 2rem;
+}
+.hospital-details h1{
+  text-align: center;
+  margin: 5rem;
+  font-size: 3rem;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+  font-style: bold;
+}
+.addressMap{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-left: 10rem;
+}
+.hospital-details h2{
+  font-size: 2rem;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+}
+.hospital-details p{
+  font-size: 1.5rem;
+  font-weight: 300;
+  font-family: "Roboto", sans-serif;
+}
+.map{
+  width: 45%;
+}
+.address{
+  width: 45%;
+}

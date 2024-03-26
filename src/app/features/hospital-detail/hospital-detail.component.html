@@ -1,0 +1,14 @@
+<section class="hospital-details">
+  <hr>
+  <h1>Hospital Details</h1>
+  <div class="addressMap">
+      <iframe class="map" [src]="sanitizedUrl" id="map"></iframe>
+      <div class="address">
+        <h2>{{hospital.hospital_name}}</h2>
+        <p>{{hospital.address.line2}}</p>
+        <p>{{hospital.address.street_address}}</p>
+        <p>{{hospital.address.city}}, {{hospital.address.state}}</p>
+        <p>{{hospital.address.zipcode}}</p>
+      </div>
+  </div>
+</section>

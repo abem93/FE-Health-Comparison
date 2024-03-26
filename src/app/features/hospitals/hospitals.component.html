@@ -1,14 +1,23 @@
 <div class="container">
-  <h1>Hospital Profiles</h1>
-  <div class="cards">
-    @for (hospital of hospitals; track hospital.id){
-      <div class="hospital-card">
-          <h4>{{hospital.hospital_name}}</h4>
-          <p>{{hospital.address.street_address}}</p>
-          <p>{{hospital.address.line2}}</p>
-          <p>{{hospital.address.city}}, {{hospital.address.state}} {{hospital.address.zipcode}}</p>
-          <a>View More</a>
-      </div>
-  }
+  <div class="hospital-list">
+    <h1>Hospital Profiles</h1>
+    <div class="cards">
+      @for (hospital of hospitals; track hospital.id){
+        <div class="hospital-card">
+            <h4>{{hospital.hospital_name}}</h4>
+            <h5>{{hospital.address.city}}</h5>
+            <p>{{hospital.address.street_address}}</p>
+            <p>{{hospital.address.line2}}</p>
+            <p>{{hospital.address.city}}, {{hospital.address.state}} {{hospital.address.zipcode}}</p>
+            <a (click)="showHospitalDetails(hospital)">View More</a>
+        </div>
+    }
+    </div>
+  </div>
+
+  <div class="hospital-details" id="details">
+  @if (showDetails) {
+      <app-hospital-detail></app-hospital-detail>
+    }
   </div>
 </div>
