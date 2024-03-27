@@ -34,12 +34,6 @@ export class HospitalDetailComponent {
     this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
       `https://maps.google.com/maps?width=800&height=800&hl=en&q=${this.searchParam}&ie=UTF8&t=&z=15&iwloc=B&output=embed`
     );
-    const iframe = document.getElementById('map') as HTMLIFrameElement;
-    if (iframe) {
-      const contentWindow = iframe.contentWindow;
-      if (contentWindow) {
-        contentWindow.location.reload();
-      }
-    }
+    document.getElementById("map")?.setAttribute("src", `${this.sanitizedUrl}`);
   }
 }
