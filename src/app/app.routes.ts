@@ -24,6 +24,10 @@ export const routes: Routes = [
       },
     ]
   },
+  {
+    path: "profile",
+    loadComponent: () => import("./features/profile/profile.component").then((c) => c.ProfileComponent)
+  },
 
   { path: '**', component: PageNotFoundComponent }
 ];
