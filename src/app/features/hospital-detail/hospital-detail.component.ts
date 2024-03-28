@@ -23,17 +23,14 @@ export class HospitalDetailComponent {
     this.hospitalService.selectedHospital$.subscribe((hospital) => {
       this.hospital = hospital;
     });
-    console.log(this.hospital);
     this.setNameForMaps();
   }
 
   setNameForMaps() {
     this.searchParam = `${this.hospital.hospital_name}, ${this.hospital.address.street_address}, ${this.hospital.address.city}, ${this.hospital.address.state} ${this.hospital.address.zipcode}`;
     this.searchParam = this.searchParam.replace(/ /g, '+');
-    console.log(this.searchParam);
     this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
       `https://maps.google.com/maps?width=800&height=800&hl=en&q=${this.searchParam}&ie=UTF8&t=&z=15&iwloc=B&output=embed`
     );
-    document.getElementById("map")?.setAttribute("src", `${this.sanitizedUrl}`);
   }
 }
