@@ -20,6 +20,7 @@ export class HospitalsComponent implements OnInit, AfterViewInit {
   constructor(private hospitalService: HospitalService, private router: Router){}
 
   ngOnInit(): void {
+    this.showDetails = false;
     this.loadHospitals()
   }
 

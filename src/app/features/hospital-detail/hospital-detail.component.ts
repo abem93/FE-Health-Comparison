@@ -22,8 +22,8 @@ export class HospitalDetailComponent {
   ngOnInit() {
     this.hospitalService.selectedHospital$.subscribe((hospital) => {
       this.hospital = hospital;
+      this.setNameForMaps();
     });
-    this.setNameForMaps();
   }
 
   setNameForMaps() {

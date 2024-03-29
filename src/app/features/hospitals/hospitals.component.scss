@@ -4,6 +4,15 @@
   font-style: bold;
   font-size: 1em;
 }
+.background-diagonal img{
+  top: 1;
+  position: absolute;
+  height: 130vh;
+  margin: -0.5rem;
+  z-index: -100;
+  width: 45%;
+}
+
 h1{
   text-align: center;
   font-family: "Roboto", sans-serif;
@@ -24,7 +33,7 @@ h1{
   width: 12rem;
   height: auto;
   padding: 2rem 3rem 6rem 3rem;
-  background-color: rgba(242, 242, 242, 0.504);
+  background-color: rgba(243, 243, 243, 0.951);
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
