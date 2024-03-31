@@ -7,6 +7,10 @@
 }
 h1{
   text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: bold;
+  font-size: 2.5em;
 }
 .profile-card{
   position: relative;
@@ -56,4 +60,26 @@ h1{
 
 .profile-card button:hover{
   color: rgb(65, 244, 166);
+}
+
+.profile-divider{
+  width: 95%;
+  color: rgba(242, 242, 242, 0.504);
+  margin: 5rem auto;
+}
+
+.saved-searches{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem;
+}
+.saved-searches h3{
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: bold;
+  font-size: 1.3em;
 }
