@@ -10,15 +10,13 @@ import { User } from '../../shared/model/user';
   styleUrl: './profile.component.scss'
 })
 export class ProfileComponent implements OnInit {
-
-  user: User = new User({});
-  constructor(private userService: UserService){}
+  constructor(private userService: UserService) { }
+  user: User | null = null
 
   ngOnInit(): void {
-    this.userService.getBootstrapData().subscribe((res:any) => {
-      this.user = res.current_user
+    this.userService.currentUserBehaviorSubject.subscribe((user) => {
+      this.user = user
     })
-    console.log(this.user)
   }
   currentUser() {
     console.log( this.userService.currentUserBehaviorSubject)

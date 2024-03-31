@@ -14,6 +14,7 @@ export class UserService {
 
   setCurrentUser(user: User | null) {
     this.currentUserBehaviorSubject.next(user);
+    console.log(user)
   }
 
   getBootstrapData() {
