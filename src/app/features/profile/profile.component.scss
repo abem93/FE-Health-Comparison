@@ -35,7 +35,7 @@ h1{
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-style: bold;
-  font-size: 1.5em;
+  font-size: 1.2em;
   margin-bottom: 0;
 }
 .profile-card p{
@@ -43,7 +43,7 @@ h1{
   text-align: center;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
 
 .profile-card button{
@@ -51,15 +51,17 @@ h1{
   bottom: 2rem;
   right: 5rem;
   left: 5rem;
-  text-decoration: none;
-  cursor: pointer;
-  font-weight: 500;
-  font-style: bold;
-  color: rgb(45, 203, 134);
+  padding: 1rem 2rem;
+  border: 0;
+  box-sizing: border-box;
+  border-radius: 1rem;
+  background-color: rgb(45, 203, 134);
+  color: #ffffff;
 }
 
 .profile-card button:hover{
-  color: rgb(65, 244, 166);
+  color: white;
+  background-color: rgb(65, 244, 166);
 }
 
 .profile-divider{
