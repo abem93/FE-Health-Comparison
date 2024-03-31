@@ -31,8 +31,7 @@ export class LoginComponent {
 
       this.authService.login(email, password).subscribe({
         next:(res:any) =>{
-          this.authService.setToken(res.token)
-          this.router.navigate(['/']);
+          this.router.navigate(['/profile']);
         },
         error: (error:any) => {
           console.log('Error logging in', error)

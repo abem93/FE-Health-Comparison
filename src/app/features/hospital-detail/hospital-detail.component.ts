@@ -22,11 +22,11 @@ export class HospitalDetailComponent {
   ngOnInit() {
     this.hospitalService.selectedHospital$.subscribe((hospital) => {
       this.hospital = hospital;
-      this.setNameForMaps();
+      this.setLinkForMaps();
     });
   }
 
-  setNameForMaps() {
+  setLinkForMaps() {
     this.searchParam = `${this.hospital.hospital_name}, ${this.hospital.address.street_address}, ${this.hospital.address.city}, ${this.hospital.address.state} ${this.hospital.address.zipcode}`;
     this.searchParam = this.searchParam.replace(/ /g, '+');
     this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(

@@ -6,10 +6,11 @@ import { AuthenticationService } from './core/services/authentication.service';
 import { UserService } from './core/services/user.service';
 import { of } from 'rxjs';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { authInterceptor } from './core/interceptors/auth.interceptor';
 
 export function initializeUserData(userService: UserService, authService: AuthenticationService) {
   if(authService.isLoggedIn()){
-    return userService.getBootstrapData().subscribe()
+    return () => userService.getBootstrapData().subscribe()
   }else{
     return () => of(null)
   }
@@ -24,6 +25,6 @@ export const appConfig: ApplicationConfig = {
     deps: [UserService, AuthenticationService],
     multi: true
   },
-  provideHttpClient()
-  ]
+  provideHttpClient(withInterceptors([authInterceptor]))
+  ],
 };
