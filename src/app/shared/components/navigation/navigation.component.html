@@ -13,7 +13,7 @@
   </div>
   <div class="login">
     @if(authService.isLoggedIn()){
-      <a class="log" routerLink="/profile" routerLinkActive="active">Profile</a>
+      <a class="log" [routerLink]="['/profile']" routerLinkActive="active">Profile</a>
       <a class="signup" (click)="logout()">Logout</a>
       }@else {
         <a class="log" [routerLink]="['/login']" routerLinkActive="active">Login</a>

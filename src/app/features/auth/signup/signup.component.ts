@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router'
@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
-export class SignupComponent {
+export class SignupComponent  {
   signupForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     zipcode: new FormControl(''),
@@ -20,6 +20,7 @@ export class SignupComponent {
     password_confirmation: new FormControl('', Validators.required)
   })
 
+  @Output() formSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
   errorMessage: string[] = [];
   isError: boolean = false;
   passwordMatch: boolean = false;
@@ -27,18 +28,27 @@ export class SignupComponent {
 
   constructor(private router: Router, private authService: AuthenticationService) { }
 
+
+
   signup(){
     const formValue = this.signupForm.value;
+    this.formSubmit.emit(true);
     this.authService.signup(formValue).subscribe({
       next:(res:any) =>{
-        this.router.navigate(['/login']);
+        this.isError = false
+        setTimeout(() => {
+          this.router.navigate(['/profile']);
+        }, 1000)
       },
       error: (error:any) => {
+        this.formSubmit.emit(false);
+        this.router.navigate(['/signup']);
         console.log('Error Signing up', error.error)
         this.isError = true
         this.errorMessage = error.error
       }
     })
+
   }
 
   validatePassword(signupForm: FormGroup) {

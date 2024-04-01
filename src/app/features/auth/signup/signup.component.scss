@@ -1,42 +1,8 @@
-.background-diagonal img{
-  top: 1;
-  position: absolute;
-  height: 90vh;
-  margin: -0.5rem;
-}
-.container{
-  display: flex;
-  flex-direction:row;
-  align-items: center;
-  justify-content: center;
-  height: 80vh;
-  z-index: -5;
-}
-
-.left-image{
-  width: 50%;
-  margin-left: 10%;
-  z-index: 5;
-}
-
-.left-image img{
-  max-width: 30rem;
-  height: auto;
-}
-.form-container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 70%;
-  margin-right: 10%;
-
-}
-
 .avatar{
   width: 9rem;
   margin: auto
 }
-.form-container h2{
+h2{
   text-align: center;
   margin-bottom: 1rem;
   color: rgb(22, 22, 22);
@@ -133,13 +99,6 @@ form .ng-invalid.ng-touched, .badForm .ng-invalid {
 }
 
 @media only screen and (max-width: 1500px) {
-  .left-image{
-    display: none;
-  }
-  .form-container{
-    margin-left: 10%;
-
-  }
   form{
     background-color: rgba(249, 249, 249, 0.9);
     display: flex;
@@ -155,10 +114,5 @@ form .ng-invalid.ng-touched, .badForm .ng-invalid {
     bottom:auto;
     top: 3rem;
     right: 3rem;
-  }
-
-  .background-diagonal img{
-    height: 100vh;
-    width: 100vw;
   }
 }

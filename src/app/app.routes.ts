@@ -7,12 +7,18 @@ export const routes: Routes = [
     loadComponent: () => import("./features/landing/landing.component").then((c) => c.LandingComponent)
   },
   {
-    path: "login",
-    loadComponent: () => import("./features/auth/login/login.component").then((c) => c.LoginComponent)
-  },
-  {
-    path: "signup",
-    loadComponent: () => import("./features/auth/signup/signup.component").then((c) => c.SignupComponent)
+    path: "",
+    loadComponent:  () => import("./shared/components/auth/auth.component").then((c) => c.AuthComponent),
+    children: [
+      {
+        path: "login",
+        loadComponent: () => import("./features/auth/login/login.component").then((c) => c.LoginComponent)
+      },
+      {
+        path: "signup",
+        loadComponent: () => import("./features/auth/signup/signup.component").then((c) => c.SignupComponent)
+      }
+    ]
   },
   {
     path: "hospitals",
@@ -27,6 +33,10 @@ export const routes: Routes = [
   {
     path: "profile",
     loadComponent: () => import("./features/profile/profile.component").then((c) => c.ProfileComponent)
+  },
+  {
+    path: "procedure",
+    loadComponent: () => import("./features/procedure/procedure.component").then((c) => c.ProcedureComponent)
   },
 
   { path: '**', component: PageNotFoundComponent }
