@@ -25,7 +25,7 @@ export const routes: Routes = [
     loadComponent: () => import("./features/hospitals/hospitals.component").then((c) => c.HospitalsComponent),
     children: [
       {
-          path: "details/:id",
+          path: "view/:id",
           loadComponent: () => import("./features/hospitals/hospitals.component").then((c) => c.HospitalsComponent)
       },
     ]

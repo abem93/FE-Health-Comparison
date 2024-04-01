@@ -7,7 +7,9 @@
       <input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '')"  minlength="5" maxlength="5" required type="text" id="zipcode" [ngModel]="user?.zipcode" name="zipcode" [disabled]="!editMode" />
       <button (click)="isEditing()">{{ editMode ? 'Save': 'Edit' }}</button>
     </div>
+    <div class="semi-circle"></div>
   </div>
+
   <hr class="profile-divider">
   <div class="saved-searches">
     <h3>Saved Searches</h3>

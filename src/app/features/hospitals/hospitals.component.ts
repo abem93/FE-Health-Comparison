@@ -39,7 +39,7 @@ export class HospitalsComponent implements OnInit, AfterViewInit {
   showHospitalDetails(hospital: Hospital) {
     this.hospitalService.setSelectedHospital(hospital)
     this.showDetails = true;
-    this.router.navigate(['/hospitals/details', hospital.id]);
+    this.router.navigate(['/hospitals/view', hospital.id]);
     setTimeout(() => {
       document.getElementById('details')?.scrollIntoView({ behavior: 'smooth' });
     }, 200);
