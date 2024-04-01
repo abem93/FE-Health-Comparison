@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
+import { authGuard } from './core/guards/auth.guard';
+import { noAuthGuard } from './core/guards/no-auth.guard';
 
 export const routes: Routes = [
   {
@@ -12,11 +14,13 @@ export const routes: Routes = [
     children: [
       {
         path: "login",
-        loadComponent: () => import("./features/auth/login/login.component").then((c) => c.LoginComponent)
+        loadComponent: () => import("./features/auth/login/login.component").then((c) => c.LoginComponent),
+        canActivate: [noAuthGuard]
       },
       {
         path: "signup",
-        loadComponent: () => import("./features/auth/signup/signup.component").then((c) => c.SignupComponent)
+        loadComponent: () => import("./features/auth/signup/signup.component").then((c) => c.SignupComponent),
+        canActivate: [noAuthGuard]
       }
     ]
   },
@@ -32,12 +36,16 @@ export const routes: Routes = [
   },
   {
     path: "profile",
-    loadComponent: () => import("./features/profile/profile.component").then((c) => c.ProfileComponent)
+    loadComponent: () => import("./features/profile/profile.component").then((c) => c.ProfileComponent),
+    canActivate: [authGuard],
   },
   {
     path: "procedure",
     loadComponent: () => import("./features/procedure/procedure.component").then((c) => c.ProcedureComponent)
   },
 
-  { path: '**', component: PageNotFoundComponent }
+  {
+    path: '**',
+    component: PageNotFoundComponent
+  }
 ];
