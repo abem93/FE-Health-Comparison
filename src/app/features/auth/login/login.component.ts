@@ -33,7 +33,7 @@ export class LoginComponent {
   ) {}
 
   login() {
-
+    this.isError = false;
     if (this.loginForm.valid) {
       const email = this.loginForm.value.email;
       const password = this.loginForm.value.password;
@@ -48,7 +48,9 @@ export class LoginComponent {
         },
         error: (error: any) => {
           this.formSubmit.emit(false);
-          this.router.navigate(['/login']);
+          setTimeout(() => {
+            this.router.navigate(['/login']);
+          }, 3000)
           console.log('Error logging in', error);
           this.isError = true;
         },

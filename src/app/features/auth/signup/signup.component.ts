@@ -37,12 +37,14 @@ export class SignupComponent  {
       next:(res:any) =>{
         this.isError = false
         setTimeout(() => {
-          this.router.navigate(['/profile']);
+          this.router.navigate(['/login']);
         }, 1000)
       },
       error: (error:any) => {
         this.formSubmit.emit(false);
-        this.router.navigate(['/signup']);
+        setTimeout(() => {
+          this.router.navigate(['/signup']);
+        }, 3000)
         console.log('Error Signing up', error.error)
         this.isError = true
         this.errorMessage = error.error
