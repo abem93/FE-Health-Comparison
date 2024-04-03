@@ -102,10 +102,11 @@ h5{
   color: rgb(65, 244, 166);
 }
 
-.price:hover{
+.price:hover, .price:hover a{
+  cursor: pointer;
   color: white;
   background-color: rgb(42, 211, 138);
   .procedure-card a{
-    background-color: white;
+    color: white;
   }
 }
