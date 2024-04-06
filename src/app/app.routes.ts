@@ -40,6 +40,10 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
+    path: "procedures-list",
+    loadComponent: () => import("./features/procedures-list/procedures-list.component").then((c) => c.ProceduresListComponent)
+  },
+  {
     path: "procedure",
     loadComponent: () => import("./features/procedure-detail/procedure.component").then((c) => c.ProcedureComponent)
   },
