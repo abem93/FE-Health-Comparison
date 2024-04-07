@@ -1,0 +1,112 @@
+*{
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+}
+.background-diagonal img{
+  top: 1;
+  position: absolute;
+  height: 130vh;
+  margin: -0.5rem;
+  z-index: -100;
+  width: 45%;
+}
+.spinner{
+  margin: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.info{
+  margin-top: 3rem;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 400;
+  font-style: italic;
+  font-family: "Roboto", sans-serif;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4rem;
+}
+select{
+  border: none;
+  width: 34vw;
+  min-height: 15vh;
+  padding-left: 1.5rem;
+  outline: none;
+}
+
+select option::selection{
+  color: white;
+
+}
+
+select option:disabled{
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+  font-style: bold;
+  background: none;
+  color: black;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+
+.hospital-container, .procedure-container{
+  position: relative;
+  width: 35vw;
+}
+.hospitals-list, .procedures-list{
+  width: 100%;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  border: 2px solid rgb(45, 203, 134);
+  margin: 1rem;
+}
+
+.hospitals-list{
+  flex-direction: column;
+}
+ul{
+  padding-left: 1rem;
+}
+li{
+  list-style-type: none;
+  font-style: italic;
+  margin: 0.5rem 0;
+}
+li:first-of-type{
+  margin-top: 0;
+}
+
+span{
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+  font-style: bold;
+  margin: 1rem;
+}
+
+button{
+  position: absolute;
+  right: -1.3rem;
+  padding: 1rem 2rem;
+  border: none;
+  background-color: rgb(45, 203, 134);
+  border-radius: 10px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+button:hover{
+  background-color: rgb(65, 244, 166);
+}

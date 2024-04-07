@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HospitalService } from '../../core/services/hospital.service';
 import { Hospital } from '../../shared/model/hospital';
 import { HospitalDetailComponent } from '../hospital-detail/hospital-detail.component';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './hospitals.component.html',
   styleUrl: './hospitals.component.scss'
 })
-export class HospitalsComponent implements OnInit, AfterViewInit {
+export class HospitalsComponent implements OnInit {
   hospitals : Hospital[] = [];
   showDetails : boolean = false;
 
@@ -22,10 +22,6 @@ export class HospitalsComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.showDetails = false;
     this.loadHospitals()
-  }
-
-  ngAfterViewInit(): void {
-
   }
 
   loadHospitals(){

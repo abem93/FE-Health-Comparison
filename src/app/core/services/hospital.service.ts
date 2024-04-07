@@ -8,7 +8,9 @@ import { BehaviorSubject, tap } from 'rxjs';
 })
 export class HospitalService {
   private selectedHospitalSubject = new BehaviorSubject<any>(null);
+  private multipleHospitalsSubject = new BehaviorSubject<any[]>([]);
   selectedHospital$ = this.selectedHospitalSubject.asObservable();
+  multipleHospitals$ = this.multipleHospitalsSubject.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -17,5 +19,9 @@ export class HospitalService {
   }
   setSelectedHospital(hospital: any) {
     this.selectedHospitalSubject.next(hospital);
+  }
+
+  selectMultipleHospitals(hospitals: any[]) {
+    this.selectedHospitalSubject.next(hospitals);
   }
 }
