@@ -39,8 +39,8 @@
     <div class="hospital-container">
       <div class="hospitals-list">
         <span>Select up to 3 hospitals</span>
-
-        <ng-multiselect-dropdown
+        <div class="dropdown">
+          <ng-multiselect-dropdown
           id="dropdown"
           [settings]="dropdownSettings"
           [data]="dropdownList"
@@ -48,8 +48,9 @@
           (onSelect)="onItemSelect($event)"
           (onSelectAll)="onSelectAll($event)"
           name="hospitals"
-        >
-        </ng-multiselect-dropdown>
+          >
+          </ng-multiselect-dropdown>
+        </div>
       </div>
       <button type="submit" [disabled]="!procedureForm.valid">
         Show Prices
