@@ -9,29 +9,52 @@
 <h2 class="spinner">Finding Procedures</h2>
 
 } @else {
-  <p class="info">Select the correct procedure and the hospitals to compare</p>
+<p class="info">Select the correct procedure and the hospitals to compare</p>
 <div class="container">
-  <div class="procedure-container">
-    <div class="procedures-list">
-      <p><select name="procedure" class="procedure" id="procedure" size="5">
-        <option value="" selected disabled>Select 1 Procedure</option>
-        <option value="">Head</option>
-        <option value="">Shoulders</option>
-        <option value="">Knees</option>
-        <option value="">Toes</option>
-      </select></p>
+  <form
+    #procedureForm="ngForm"
+    (ngSubmit)="onSubmit(procedureForm)"
+    id="loginForm"
+  >
+    <div class="procedure-container">
+      <div class="procedures-list">
+        <p>
+          <select
+            name="procedure"
+            class="procedure"
+            id="procedure"
+            [(ngModel)]="selectedProcedure"
+            #requiredInput="ngModel"
+            size="5"
+          >
+            <option value="" selected disabled>Select 1 Procedure</option>
+            <option value="head">Head</option>
+            <option value="shoulders">Shoulders</option>
+            <option value="knees">Knees</option>
+            <option value="toes">Toes</option>
+          </select>
+        </p>
+      </div>
     </div>
-  </div>
-  <div class="hospital-container">
-    <div class="hospitals-list">
-      <span>Select up to 3 hospitals</span>
-      <ul>
-        @for (hospital of hospitals; track hospital.id){
-          <li><input type="checkbox" name="hospital" value="hospital.hospital_name"> {{hospital.hospital_name}} ({{hospital.address.city}})</li>
-        }
-      </ul>
+    <div class="hospital-container">
+      <div class="hospitals-list">
+        <span>Select up to 3 hospitals</span>
+
+        <ng-multiselect-dropdown
+          id="dropdown"
+          [settings]="dropdownSettings"
+          [data]="dropdownList"
+          [(ngModel)]="selectedItems"
+          (onSelect)="onItemSelect($event)"
+          (onSelectAll)="onSelectAll($event)"
+          name="hospitals"
+        >
+        </ng-multiselect-dropdown>
+      </div>
+      <button type="submit" [disabled]="!procedureForm.valid">
+        Show Prices
+      </button>
     </div>
-    <button onclick="getSelectedHospitals()" [routerLink]="['/procedure']">Show Prices</button>
-  </div>
+  </form>
 </div>
 }
