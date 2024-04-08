@@ -45,7 +45,7 @@ export const routes: Routes = [
   },
   {
     path: "procedure",
-    loadComponent: () => import("./features/procedure-detail/procedure.component").then((c) => c.ProcedureComponent)
+    loadComponent: () => import("./features/procedure/procedure.component").then((c) => c.ProcedureComponent)
   },
 
   {

@@ -41,6 +41,12 @@ select{
   outline: none;
 }
 
+select option{
+  font-size: 1.1rem;
+  font-weight: 400;
+  font-style: italic;
+}
+
 select option::selection{
   color: white;
 
@@ -69,6 +75,7 @@ select option:disabled{
   flex-direction: row;
   border: 2px solid rgb(45, 203, 134);
   margin: 1rem;
+  min-height: 15vh;
 }
 
 .hospitals-list{
@@ -80,6 +87,7 @@ ul{
 li{
   list-style-type: none;
   font-style: italic;
+  font-size: 1.1rem;
   margin: 0.5rem 0;
 }
 li:first-of-type{
