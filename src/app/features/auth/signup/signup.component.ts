@@ -41,7 +41,7 @@ export class SignupComponent  {
         }, 1000)
       },
       error: (error:any) => {
-        this.formSubmit.emit(false);
+        this.formSubmit.emit(true);
         setTimeout(() => {
           this.router.navigate(['/signup']);
         }, 3000)

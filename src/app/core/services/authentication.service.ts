@@ -38,7 +38,12 @@ export class AuthenticationService {
   }
 
   isLoggedIn(){
-    return !!this.getToken();
+    if(this.getToken() !== undefined && this.getToken() !== null){
+      return false
+    }else{
+      return !!this.getToken();
+    }
+
   }
 
   logout() {

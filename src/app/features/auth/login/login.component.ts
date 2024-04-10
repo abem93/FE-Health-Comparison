@@ -41,22 +41,23 @@ export class LoginComponent {
       this.authService.login(email, password).subscribe({
         next: (res: any) => {
           this.isError = false;
-          this.formSubmit.emit(true);
           setTimeout(() => {
+            this.formSubmit.emit(true);
             this.router.navigate(['/profile']);
           }, 1000)
         },
+
         error: (error: any) => {
-          this.formSubmit.emit(false);
           setTimeout(() => {
-            this.router.navigate(['/login']);
-          }, 3000)
-          console.log('Error logging in', error);
-          this.isError = true;
+            this.formSubmit.emit(false);
+            console.log('Error logging in', error);
+            this.isError = true;
+          }, 2000)
         },
       });
     } else {
       this.isError = true;
+      this.formSubmit.emit(false);
     }
 
   }
