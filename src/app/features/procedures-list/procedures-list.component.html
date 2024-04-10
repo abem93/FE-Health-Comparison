@@ -5,15 +5,22 @@
   />
 </div>
 @if (isLoading) {
-<app-spinner class="spinner"></app-spinner>
-<h2 class="spinner">Finding Procedures</h2>
+  <app-spinner class="spinner"></app-spinner>
+  <h2 class="spinner">Finding Procedures</h2>
 
-} @else {
+}@else if (procedures.length < 1) {
+  <div class="container">
+    <p class="info">No procedures found</p>
+    <button [routerLink]="['']">Go Back</button>
+  </div>
+
+}
+ @else {
 <p class="info">Select the correct procedure and the hospitals to compare</p>
 <div class="container">
   <form
     #procedureForm="ngForm"
-    (ngSubmit)="onSubmit(procedureForm)"
+    (ngSubmit)="onFormSubmit(procedureForm)"
     id="loginForm"
   >
     <div class="procedure-container">
@@ -26,12 +33,12 @@
             [(ngModel)]="selectedProcedure"
             #requiredInput="ngModel"
             size="5"
+            required
           >
             <option value="" selected disabled>Select 1 Procedure</option>
-            <option value="head">Head</option>
-            <option value="shoulders">Shoulders</option>
-            <option value="knees">Knees</option>
-            <option value="toes">Toes</option>
+            @for (procedure of procedures; let i = $index; track i) {
+            <option value="{{procedure.name}}">{{procedure.name}} ({{procedure.cpt_code}})</option>
+            }
           </select>
         </p>
       </div>
@@ -40,19 +47,17 @@
       <div class="hospitals-list">
         <span>Select up to 3 hospitals</span>
         <div class="dropdown">
-          <ng-multiselect-dropdown
+          <ng-multiselect-dropdown required
           id="dropdown"
           [settings]="dropdownSettings"
           [data]="dropdownList"
           [(ngModel)]="selectedItems"
-          (onSelect)="onItemSelect($event)"
-          (onSelectAll)="onSelectAll($event)"
           name="hospitals"
           >
           </ng-multiselect-dropdown>
         </div>
       </div>
-      <button type="submit" [disabled]="!procedureForm.valid">
+      <button type="submit" class="button" [disabled]="!procedureForm.valid" [routerLink]="['/procedure']">
         Show Prices
       </button>
     </div>

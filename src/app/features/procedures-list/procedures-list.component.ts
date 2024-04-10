@@ -5,6 +5,7 @@ import { SpinnerComponent } from '../../shared/components/spinner/spinner.compon
 import {  FormsModule, NgForm } from '@angular/forms';
 import {  IDropdownSettings, NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CommonModule } from '@angular/common';
+import { ProcedureService } from '../../core/services/procedure.service';
 
 
 
@@ -16,37 +17,37 @@ import { CommonModule } from '@angular/common';
   styleUrl: './procedures-list.component.scss'
 })
 export class ProceduresListComponent implements OnInit {
-
   isLoading: boolean = true;
   procedures: any[] = [];
   hospitals: any[] = [];
   selectedProcedure: any;
-  dropdownList:{ item_id: number, item_text: string }[] = [];
-  selectedItems: { item_id: number, item_text: string }[] = [];
+  dropdownList:{ id: number, hospital_name: string }[] = [];
+  selectedItems: { id: number, hospital_name: string }[] = [];
   dropdownSettings: IDropdownSettings = {};
 
 
-  constructor(private router: Router, private hospitalService: HospitalService ) { }
+  constructor(private router: Router, private hospitalService: HospitalService, private procedureService: ProcedureService ) { }
 
   ngOnInit(): void {
     setTimeout(() => {
       this.isLoading = false;
     }, 2000);
-    this.loadHospitals()
-    console.log(this.dropdownList)
+    this.loadProcedures();
+    this.loadHospitals();
     this.dropdownSettings  = {
       singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
+      idField: 'id',
+      textField: 'hospital_name',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 3,
       limitSelection: 3,
-      allowSearchFilter: false
+      allowSearchFilter: false,
+      noDataAvailablePlaceholderText: 'No Hospitals available',
     };
   }
 
-  onSubmit(form: NgForm) {
+  onFormSubmit(form: NgForm) {
     console.log(form.value)
   }
 
@@ -55,16 +56,15 @@ export class ProceduresListComponent implements OnInit {
       next: (response: any) => {
         this.hospitals = response
         for(let hospital of this.hospitals){
-          this.dropdownList.push({item_id: hospital.id, item_text: `${hospital.hospital_name} (${hospital.address.city}, ${hospital.address.state})`})
+          this.dropdownList.push({id: hospital.id, hospital_name: `${hospital.hospital_name} (${hospital.address.city}, ${hospital.address.state})`})
         }
       }
     })
   }
 
-  onItemSelect(item: any) {
-    console.log(item);
-  }
-  onSelectAll(items: any) {
-    console.log(items);
+  loadProcedures(){
+    this.procedureService.procedureSearchSubject$.subscribe((procedures) => {
+      this.procedures = procedures;
+    });
   }
 }

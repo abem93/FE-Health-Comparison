@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { BehaviorSubject, tap } from 'rxjs';
+import { Hospital } from '../../shared/model/hospital';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +18,11 @@ export class HospitalService {
   getHospitals() {
     return this.http.get(`${environment.apiUrl}/hospitals`);
   }
-  setSelectedHospital(hospital: any) {
+  setSelectedHospital(hospital: Hospital) {
     this.selectedHospitalSubject.next(hospital);
   }
 
-  selectMultipleHospitals(hospitals: any[]) {
+  selectMultipleHospitals(hospitals: Hospital[]) {
     this.selectedHospitalSubject.next(hospitals);
   }
 }

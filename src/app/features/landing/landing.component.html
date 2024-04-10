@@ -4,12 +4,15 @@
     <p>Compare prices and save</p>
   </div>
 
-  <div class="search">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <input type="text" placeholder="Enter Procedure or CPT Code">
-    <a class="button" [routerLink]="['/procedures-list']" >Search</a>
-  </div>
-  <div class="semi-circle"></div>
+  <form #searchForm="ngForm" (ngSubmit)="onFormSubmit(searchForm)">
+    <div class="search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text"  placeholder="Enter Procedure or CPT Code" name="name"
+      ngModel required>
+      <button type="submit" class="button" [disabled]="!searchForm.valid">Search</button>
+    </div>
+    <div class="semi-circle"></div>
+  </form>
 
   <div class="top-procedures">
     <h3>Top Procedures</h3>
