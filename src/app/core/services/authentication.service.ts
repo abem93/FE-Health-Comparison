@@ -39,11 +39,10 @@ export class AuthenticationService {
 
   isLoggedIn(){
     if(this.getToken() !== undefined && this.getToken() !== null){
-      return false
+      return true
     }else{
       return !!this.getToken();
     }
-
   }
 
   logout() {

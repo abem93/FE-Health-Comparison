@@ -31,7 +31,7 @@ export class ProceduresListComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
       this.isLoading = false;
-    }, 2000);
+    }, 1500);
     this.loadProcedures();
     this.loadHospitals();
     this.dropdownSettings  = {
@@ -49,7 +49,6 @@ export class ProceduresListComponent implements OnInit {
   }
 
   onFormSubmit(form: NgForm) {
-    console.log(form.value)
     this.selectHospital(form);
     this.selectProcedure(form);
 
@@ -73,7 +72,6 @@ export class ProceduresListComponent implements OnInit {
   loadProcedures(){
     this.procedureService.procedureSearchSubject$.subscribe((procedures) => {
       this.procedures = procedures;
-      console.log(this.procedures)
     });
   }
   selectHospital(form: NgForm){
@@ -95,7 +93,7 @@ export class ProceduresListComponent implements OnInit {
     const selectedProcedure = parseInt(form.value.procedure)
       for(let procedure of this.procedures){
         if(selectedProcedure === procedure.id){
-          console.log(procedure, selectedProcedure)
+
           //Push selected hospitals to behavior subject
 
 

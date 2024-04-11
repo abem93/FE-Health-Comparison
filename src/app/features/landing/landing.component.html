@@ -7,7 +7,7 @@
   <form #searchForm="ngForm" (ngSubmit)="onFormSubmit(searchForm)">
     <div class="search">
       <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text"  placeholder="Enter Procedure or CPT Code" name="name"
+      <input type="text"  placeholder="Enter Procedure or CPT Code" name="name" minlength="3"
       ngModel required>
       <button type="submit" class="button" [disabled]="!searchForm.valid">Search</button>
     </div>
