@@ -44,12 +44,20 @@ export class ProceduresListComponent implements OnInit {
       limitSelection: 3,
       allowSearchFilter: false,
       noDataAvailablePlaceholderText: 'No Hospitals available',
+      defaultOpen: true
     };
   }
 
   onFormSubmit(form: NgForm) {
     console.log(form.value)
+    this.selectHospital(form);
+    this.selectProcedure(form);
+
+    // this.router.navigate(['/procedure/', form.value.procedure]);
+
+    this.router.navigate(['/procedure']);
   }
+
 
   loadHospitals(){
     this.hospitalService.getHospitals().subscribe({
@@ -65,6 +73,37 @@ export class ProceduresListComponent implements OnInit {
   loadProcedures(){
     this.procedureService.procedureSearchSubject$.subscribe((procedures) => {
       this.procedures = procedures;
+      console.log(this.procedures)
     });
   }
+  selectHospital(form: NgForm){
+    //compare and grab selected hospitals information
+    const selectedHospitals = []
+    for(let selectedHospital of form.value.hospitals){
+      for(let hospital of this.hospitals){
+        if(selectedHospital.id === hospital.id){
+          selectedHospitals.push(hospital);
+      }
+      }
+    }
+    //Push selected hospitals to behavior subject
+    this.hospitalService.selectMultipleHospitals([...selectedHospitals]);
+  }
+
+  selectProcedure(form: NgForm){
+    //compare and grab selected hospitals information
+    const selectedProcedure = parseInt(form.value.procedure)
+      for(let procedure of this.procedures){
+        if(selectedProcedure === procedure.id){
+          console.log(procedure, selectedProcedure)
+          //Push selected hospitals to behavior subject
+
+
+      }
+      }
+    }
+
 }
+
+
+

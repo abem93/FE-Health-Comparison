@@ -8,7 +8,7 @@ h2{
   text-align: center;
   font-size: 1.5rem;
 }
-h1{
+h1, h2{
   text-align: center;
   font-size: 2rem;
 }
@@ -27,7 +27,7 @@ h1{
 .background-diagonal img{
   top: 1;
   position: absolute;
-  height: 100vh;
+  height: 105vh;
   margin: -0.5rem;
   z-index: -100;
   width: 45%;
@@ -35,6 +35,7 @@ h1{
 
 #map{
   margin: 2rem 5rem;
+  margin-left: 3%;
   width: 55rem;
   height: 25rem;
   border-radius: 24px;
@@ -47,11 +48,17 @@ h1{
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
+  min-width: 50vw;
+
+}
+.procedure-details{
+  position: relative;
+
 }
 .procedure-card{
   position: relative;
   width: 12rem;
-  height: auto;
+  height: 16rem;
   padding: 2rem 3rem 6rem 3rem;
   background-color: rgba(243, 243, 243, 0.951);
   border-radius: 12px;
@@ -59,8 +66,9 @@ h1{
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  margin: 1rem;
+  margin: 0.5rem 1rem;
   outline: rgb(107, 255, 191, 0.2) 4px solid;
+  flex: 1
 }
 .procedure-card h4{
   text-align: center;
@@ -69,15 +77,18 @@ h1{
   font-style: bold;
   font-size: 1.5em;
   margin-bottom: 0;
+  margin-top: 0;
+  flex: 1;
+  white-space: pre-wrap;
 }
 h5{
-  margin: 0;
   text-align: center;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 1em;
   font-style:normal;
-  margin-bottom: 1.25em;
+  margin: 1em 0;
+  white-space: pre-wrap;
 }
 .procedure-card p{
   margin: 0;
@@ -85,7 +96,7 @@ h5{
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-size: 1.2em;
-
+  white-space: pre-wrap;
 }
 
 .procedure-card a{

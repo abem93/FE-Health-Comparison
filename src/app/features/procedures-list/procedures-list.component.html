@@ -11,7 +11,7 @@
 }@else if (procedures.length < 1) {
   <div class="container">
     <p class="info">No procedures found</p>
-    <button [routerLink]="['']">Go Back</button>
+    <button [routerLink]="['']" type="button">Go Back</button>
   </div>
 
 }
@@ -37,7 +37,7 @@
           >
             <option value="" selected disabled>Select 1 Procedure</option>
             @for (procedure of procedures; let i = $index; track i) {
-            <option value="{{procedure.name}}">{{procedure.name}} ({{procedure.cpt_code}})</option>
+            <option value="{{procedure.id}}">{{procedure.name}} ({{procedure.cpt_code}})</option>
             }
           </select>
         </p>
@@ -57,7 +57,7 @@
           </ng-multiselect-dropdown>
         </div>
       </div>
-      <button type="submit" class="button" [disabled]="!procedureForm.valid" [routerLink]="['/procedure']">
+      <button type="button" class="button" [disabled]="!procedureForm.valid" (click)="onFormSubmit(procedureForm)">
         Show Prices
       </button>
     </div>

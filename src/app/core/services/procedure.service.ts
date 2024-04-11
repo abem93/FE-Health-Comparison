@@ -8,7 +8,9 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ProcedureService {
+  private selectedProcedureSubject = new BehaviorSubject<any>(null);
   private procedureSearchSubject = new BehaviorSubject<any[]>([]);
+  selectedProcedure$ = this.selectedProcedureSubject.asObservable();
   procedureSearchSubject$ = this.procedureSearchSubject.asObservable();
   constructor(private http: HttpClient) { }
 
@@ -18,5 +20,8 @@ export class ProcedureService {
 
   procedureSearchResult(procedures: Procedure[]) {
     this.procedureSearchSubject.next(procedures);
+  }
+  setSelectedProcedure(procedure: Procedure) {
+    this.selectedProcedureSubject.next(procedure);
   }
 }

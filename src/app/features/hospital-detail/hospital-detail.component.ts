@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Hospital } from '../../shared/model/hospital';
 import { HospitalService } from '../../core/services/hospital.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -10,7 +10,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   templateUrl: './hospital-detail.component.html',
   styleUrl: './hospital-detail.component.scss',
 })
-export class HospitalDetailComponent {
+export class HospitalDetailComponent implements OnInit {
   hospital: any = [];
   searchParam: string = '';
   sanitizedUrl: SafeResourceUrl = '';

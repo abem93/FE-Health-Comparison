@@ -22,7 +22,8 @@ export class HospitalService {
     this.selectedHospitalSubject.next(hospital);
   }
 
-  selectMultipleHospitals(hospitals: Hospital[]) {
-    this.selectedHospitalSubject.next(hospitals);
+  selectMultipleHospitals(hospital: Hospital[]) {
+    this.multipleHospitalsSubject.next([hospital]);
   }
 }
+
