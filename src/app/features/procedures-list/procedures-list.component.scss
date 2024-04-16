@@ -37,9 +37,11 @@
 select{
   border: none;
   width: 37vw;
-  min-height: 15vh;
-  padding-left: 1.5rem;
+  min-height: 17vh;
+  padding: 1rem 1.5rem;
+  padding-top: 0;
   outline: none;
+  overflow-x: auto;
 }
 h2{
   text-align: center;
@@ -47,7 +49,7 @@ h2{
 }
 
 select option{
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   font-weight: 400;
   font-style: italic;
 }

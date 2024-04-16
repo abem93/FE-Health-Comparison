@@ -18,7 +18,8 @@ export class LandingComponent {
 
 
   onFormSubmit(form: NgForm) {
-    const formValue = form.value
+    const formValue = form.value;
+    formValue.name = formValue.name.trim().toUpperCase();
     this.procedureService.getProcedures(formValue).subscribe({
       next: (response: any) => {
         this.procedureService.procedureSearchResult(response)
