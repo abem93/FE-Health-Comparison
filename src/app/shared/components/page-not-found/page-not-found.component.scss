@@ -1,7 +1,7 @@
-/*======================
-    404 page
-=======================*/
-
+*{
+  font-family: "Roboto", sans-serif;
+  font-size: 2rem;
+}
 .page_404 {
   padding: 40px 0;
   background: #fff;
@@ -10,6 +10,15 @@
 
 .page_404 img {
   width: 100%;
+}
+p{
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+a{
+  font-style: none;
+  text-decoration: none;
 }
 
 .four_zero_four_bg {
@@ -25,16 +34,22 @@
   margin: 1rem;
 }
 
-.content_box_404 h2 {
+.content_box_404 h3 {
   text-align: center;
 }
 
 .link_404 {
   color: #fff !important;
   padding: 10px 20px;
-  background: #39ac31;
+  background: #2dbc66;
   margin: 20px 0;
+  border-radius: 12px;
 }
-.contant_box_404 {
+.content_box_404 {
   margin-top: -50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+

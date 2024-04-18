@@ -32,16 +32,19 @@ export class SignupComponent  {
 
   signup(){
     const formValue = this.signupForm.value;
-    this.formSubmit.emit(true);
+    console.log(formValue)
     this.authService.signup(formValue).subscribe({
       next:(res:any) =>{
+        console.log(res)
+        this.formSubmit.emit(true);
         this.isError = false
         setTimeout(() => {
+          this.formSubmit.emit(false);
           this.router.navigate(['/login']);
         }, 1000)
       },
       error: (error:any) => {
-        this.formSubmit.emit(true);
+        this.formSubmit.emit(false);
         setTimeout(() => {
           this.router.navigate(['/signup']);
         }, 3000)
