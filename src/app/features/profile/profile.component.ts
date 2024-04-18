@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 export class ProfileComponent implements OnInit {
   editMode: boolean = false;
   user: User | null = null
+  searches: any = null
 
   constructor(private userService: UserService) { }
 

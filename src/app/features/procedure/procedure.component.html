@@ -8,26 +8,34 @@
 <app-spinner class="spinner"></app-spinner>
 <h2 class="spinner">Gathering Price Information</h2>
 } @else {
+
 <div class="container">
-  <h1>Procedure Name (CPT CODE)</h1>
+  @if(authService.isLoggedIn()) {
+    <span id="star" onclick="addToFavorite()">★</span>
+  }
+    <h1>{{procedureName}} {{procedureCode}}</h1>
 
   <div class="map" id="map">
     <!-- <app-map id="map"></app-map> -->
-    <iframe id="map" src="https://maps.google.com/maps?width=800&height=800&hl=en&q=CoxHealth+Medical+Center+South,+3801+S+National+Ave,+Springfield,+MO+65807&ie=UTF8&t=&z=15&iwloc=B&output=embed" frameborder="0"></iframe>
+    <iframe class="map" [src]="sanitizedUrl" id="map"></iframe>
+    <span id="pocedure-price">{{ proccedurePrice ? ('$ ' + proccedurePrice) : 'NO PRICE INFO FOUND' }}</span>
   </div>
   <h2>Price Comparison</h2>
   <div class="cards" id="cards">
-    @for (hospital of hospitals; track hospital.id){
-      <div class="procedure-details">
-        <div class="procedure-card price" id="price">
-            <h4>{{hospital.hospital_name}}</h4>
-            <h5>Self Pay Price</h5>
+    @if (selectedHospital) {
+      @for (hospital of selectedHospital; track hospital.id){
+        <div class="procedure-details" (click)="setLinkForMaps(hospital)">
+          <div class="procedure-card price" id="price">
+              <h4>{{hospital.hospital_name|| ''}}</h4>
+              <span class="label">Self Pay Rate: </span>
+              <h5 id="selfpay">{{ hospital.price ? ('$ ' + hospital.price) : 'NO PRICE INFO FOUND' }}</h5>
 
-            <p>{{hospital.address.street_address}}</p>
-            <p>{{hospital.address.city}}, {{hospital.address.state}} {{hospital.address.zipcode}}</p>
-            <a >View More</a>
+              <p>{{hospital.address.street_address|| ''}}</p>
+              <p>{{hospital.address.city|| ''}}, {{hospital.address.state|| ''}} {{hospital.address.zipcode|| ''}}</p>
+              <a >View More</a>
+          </div>
         </div>
-      </div>
+      }
     }
   </div>
 </div>

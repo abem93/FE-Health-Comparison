@@ -44,7 +44,7 @@ export const routes: Routes = [
     loadComponent: () => import("./features/procedures-list/procedures-list.component").then((c) => c.ProceduresListComponent)
   },
   {
-    path: "procedure",
+    path: "procedure/:id",
     loadComponent: () => import("./features/procedure/procedure.component").then((c) => c.ProcedureComponent)
   },
 

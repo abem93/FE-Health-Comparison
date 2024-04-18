@@ -6,6 +6,7 @@ import {  FormsModule, NgForm } from '@angular/forms';
 import {  IDropdownSettings, NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CommonModule } from '@angular/common';
 import { ProcedureService } from '../../core/services/procedure.service';
+import { ProcedureCostService } from '../../core/services/procedure-cost.service';
 
 
 
@@ -26,7 +27,7 @@ export class ProceduresListComponent implements OnInit {
   dropdownSettings: IDropdownSettings = {};
 
 
-  constructor(private router: Router, private hospitalService: HospitalService, private procedureService: ProcedureService ) { }
+  constructor(private router: Router, private hospitalService: HospitalService, private procedureService: ProcedureService, private procedureCostService: ProcedureCostService ) { }
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -51,10 +52,13 @@ export class ProceduresListComponent implements OnInit {
   onFormSubmit(form: NgForm) {
     this.selectHospital(form);
     this.selectProcedure(form);
-
-    // this.router.navigate(['/procedure/', form.value.procedure]);
-
-    this.router.navigate(['/procedure']);
+    const id = form.value.procedure
+    this.procedureCostService.fetchProcedure(id).subscribe({
+      next: (response: any) => {
+        this.procedureCostService.setSelectedProcedure(response)
+      }
+    })
+    this.router.navigate(['/procedure/'+id]);
   }
 
 

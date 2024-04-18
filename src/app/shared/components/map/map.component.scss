@@ -1,4 +1,9 @@
-#map {
-  width: 100%;
-  height: 700px;
+:host {
+  width: 80vw;
+  height: 20vh;
+}
+
+google-map {
+  width: 100%;  // This makes the map fill its container
+  height: 50%;
 }

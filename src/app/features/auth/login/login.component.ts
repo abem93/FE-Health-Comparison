@@ -48,6 +48,7 @@ export class LoginComponent {
         },
 
         error: (error: any) => {
+          localStorage.removeItem('token');
           setTimeout(() => {
             this.formSubmit.emit(false);
             console.log('Error logging in', error);
