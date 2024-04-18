@@ -32,10 +32,8 @@ export class SignupComponent  {
 
   signup(){
     const formValue = this.signupForm.value;
-    console.log(formValue)
     this.authService.signup(formValue).subscribe({
       next:(res:any) =>{
-        console.log(res)
         this.formSubmit.emit(true);
         this.isError = false
         setTimeout(() => {

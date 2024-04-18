@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { SpinnerComponent } from '../../shared/components/spinner/spinner.component';
 import { MapComponent } from '../../shared/components/map/map.component';
 import { HospitalService } from '../../core/services/hospital.service';
@@ -7,6 +7,11 @@ import { ProcedureCostService } from '../../core/services/procedure-cost.service
 import { ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../../core/services/authentication.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Chart, ChartType } from 'chart.js/auto';
+Chart.register(ChartDataLabels);
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { OnDestroy } from '@angular/core';
+import { map } from 'rxjs';
 
 
 @Component({
@@ -16,7 +21,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   templateUrl: './procedure.component.html',
   styleUrl: './procedure.component.scss',
 })
-export class ProcedureComponent implements OnInit {
+export class ProcedureComponent implements OnInit, OnDestroy {
   isLoading: boolean = true;
   hospitals: any[] = [];
   selectedHospital: any[] = [];
@@ -24,9 +29,12 @@ export class ProcedureComponent implements OnInit {
   id: any = 0;
   procedureName: string = 'Procedure name';
   procedureCode: string = '';
-  proccedurePrice: number = 0;
+  proccedurePrice: number;
   sanitizedUrl: SafeResourceUrl = '';
   searchParam: string = '';
+  public priceBarGraph: Chart;
+  chartlabels: string[] = [];
+  chartdata: number[] = [];
 
   constructor(private hospitalService: HospitalService, private router: Router, private procedureCostService: ProcedureCostService, private route: ActivatedRoute, public authService: AuthenticationService, private sanitizer: DomSanitizer) {}
 
@@ -41,7 +49,9 @@ export class ProcedureComponent implements OnInit {
       document.getElementById('price')?.scrollIntoView({ behavior: 'smooth' });
     }, 2000);
     this.authService.isLoggedIn()
+    this.proccedurePrice
   }
+
 
   loadHospitals() {
     //Load the hospitals selected in Procedures list
@@ -91,7 +101,9 @@ export class ProcedureComponent implements OnInit {
           }
         })
       })
+      this.setChartData();
     }
+
   }
 
   addToFavorite(){
@@ -99,7 +111,6 @@ export class ProcedureComponent implements OnInit {
   }
 
   setLinkForMaps(hospital: any) {
-    console.log('link', hospital);
     this.proccedurePrice = hospital.price;
     this.searchParam = `${hospital.hospital_name}, ${hospital.address.street_address}, ${hospital.address.city}, ${hospital.address.state} ${hospital.address.zipcode}`;
     this.searchParam = this.searchParam.replace(/ /g, '+');
@@ -108,5 +119,58 @@ export class ProcedureComponent implements OnInit {
     );
   }
 
+  createChart() {
+
+    const data = {
+      labels: this.chartlabels,
+      datasets: [
+        {
+          label: 'Selfpay Rate',
+          data: this.chartdata,
+          backgroundColor: ['#e74a4a'],
+          borderColor: ['#e74a4a'],
+          borderWidth: 1,
+        },
+      ],
+    };
+
+
+    this.priceBarGraph = new Chart('priceBarGraph', {
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        },
+        responsive: true,
+        plugins: {
+          datalabels: {
+            color: 'white',
+          },
+          legend:{
+            display: true
+          }
+        },
+      },
+      type: 'bar' as ChartType,
+      data,
+    });
+  }
+
+  setChartData() {
+    for (let i = 0; i < this.selectedHospital.length; i++) {
+      this.chartdata.push(this.selectedHospital[i].price);
+    }
+    for (let i = 0; i < this.selectedHospital.length; i++) {
+      this.chartlabels.push(this.selectedHospital[i].hospital_name);
+    }
+    console.log('chart', this.chartdata, this.chartlabels)
+  }
+  ngOnDestroy(): void {
+    if (this.priceBarGraph){
+      this.priceBarGraph.destroy();
+    }
+
+  }
 
 }
